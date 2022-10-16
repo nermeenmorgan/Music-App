@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music Player</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="music-player-page">
+      <div class="player-container paused" data-volume-level="high">
+
+        <audio preload="metadata">
+          <source src="music/audio.mp3" type="music/mp3">
+        </audio>
+
+        <div class="details">
+          <!-- <div class="now-playing">Now Playing</div> -->
+          <div class="track-art"></div>
+          <div class="track-name">Track Name</div>
+          <div class="track-artist">Track Artist</div>
+        </div>
+
+        
+
+        <div class="timeline-container">
+          <div class="current-time">00:00</div>
+          <input
+            type="range"
+            min="1"
+            max="100"
+            value="0"
+            class="seek-slider"
+            onchange="seekTo()"
+          />
+          <div class="total-time">00:00</div>
+        </div>
+
+        <div class="volume-container">
+          <button class="mute-btn">
+            <span class="volume-off"><i class="fa fa-volume-off"></i></span>
+            <span class="volume-down"><i class="fa fa-volume-down"></i></span>
+            <span class="volume-up"><i class="fa fa-volume-up"></i></span>
+          </button>
+          <input
+            class="volume-slider"
+            type="range"
+            min="0"
+            max="1"
+            value="100"
+            step="any"
+            style="--volume-level:1"
+          />
+        </div>
+
+        <div class="button-controls">
+          <button class="random-btn" title="random" onclick="randomTrack()">
+            <span class="fas fa-random"></span>
+          </button>
+          <button class="prev-btn" onclick="prevTrack()">
+            <span class="fa fa-step-backward"></span>
+          </button>
+          <button class="play-pause-btn">
+            <span class="fa fa-play-circle play"></span>
+            <span class="fa fa-pause-circle pause"></span>
+          </button>
+          <button class="next-btn" onclick="nextTrack()">
+            <span class="fa fa-step-forward"></span>
+          </button>
+          <button class="repeat-btn" onclick="repeatTrack()">
+            <span class="fa fa-repeat"></span>
+          </button>
+        </div>
+        
+        
+
+        
+
+        <div id="wave">
+          <span class="stroke"></span>
+          <span class="stroke"></span>
+          <span class="stroke"></span>
+          <span class="stroke"></span>
+          <span class="stroke"></span>
+          <span class="stroke"></span>
+          <span class="stroke"></span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
