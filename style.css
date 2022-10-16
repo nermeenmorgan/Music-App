@@ -48,42 +48,58 @@ body {
   font-size: 1rem;
 }
 
-/*Button Controls*/
-.button-controls {
-  cursor: pointer;
+
+/* Volume Buttons */
+.volume-container {
+  right: -2%;
   display: flex;
   justify-content: center;
+  position: absolute;
   align-items: center;
+  transform: translateY(100%);
 }
-.active {
-  color: black;
+.button-controls:hover .volume-container{
+  
 }
-.repeat-btn,
-.random-btn,
-.playpause-track,
-.prev-btn,
-.next-btn {
-  padding-left: 5%;
-  opacity: 0.8;
-  transition: opacity 0.2s;
+
+.mute-btn{
+  background: transparent;
+  border: none;
 }
-.repeat-btn:hover,
-.random-btn:hover,
-.playpause-track:hover,
-.prev-btn:hover,
-.next-btn:hover {
-  opacity: 1;
+
+.volume-off,
+.volume-down,
+.volume-up {
+  color: #eeeae6;
+  display: none;
 }
+
+/*Display volume button according to volume state*/
+.player-container[data-volume-level="high"] .volume-up {
+  display: block;
+}
+
+.player-container[data-volume-level="low"] .volume-down {
+  display: block;
+}
+
+.player-container[data-volume-level="muted"] .volume-off {
+  display: block;
+}
+
+/* Timeline Container */
 .timeline-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.volume-container {
-  display: flex;
-  align-items: center;
-}
 
+/* Time */
+.current-time,
+.total-time {
+  padding: 10px;
+}
+/* Time Slider */
 .seek-slider {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -100,7 +116,7 @@ body {
   transition: opacity 0.2s;
 }
 
-
+/* Volume Slider */
 .volume-slider {
   -webkit-appearance: none;
   appearance: none;
@@ -132,6 +148,7 @@ body {
   border-radius: .4rem;
 }
 
+/* Volume and Timeline Slider Thumb */
 .seek-slider::-webkit-slider-thumb,
 .volume-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -153,6 +170,7 @@ body {
   z-index: 1;
 }
 
+/* Volume Slider Appear on Hover */
 .volume-container:hover .volume-slider,
 .volume-slider:focus-within {
   display: block;
@@ -161,34 +179,46 @@ body {
   transform: scaleX(1);
   transition: width 300ms ease-in-out, transform 300ms ease-in-out;
 }
-.current-time,
-.total-time {
-  padding: 10px;
+
+/*Button Controls*/
+.button-controls {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button-controls button{
+  background: none;
+  border:none;
+  padding: 0;
+  height: 1.5rem;
+  width: 15%;
+  font-size: 1.1rem;
+}
+.active {
+  color: black;
 }
 
-.mute-btn{
-  background: transparent;
-  border: none;
-}
-
-.volume-off,
-.volume-down,
-.volume-up {
+/* Buttons */
+.replay-btn,
+.shuffle-btn,
+.play-pause-btn,
+.prev-btn,
+.next-btn {
+  display: flex;
   color: #eeeae6;
-  display: none;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity 0.3s;
 }
-
-/*Display volume button according to volume state*/
-.player-container[data-volume-level="high"] .volume-up {
-  display: block;
-}
-
-.player-container[data-volume-level="low"] .volume-down {
-  display: block;
-}
-
-.player-container[data-volume-level="muted"] .volume-off {
-  display: block;
+.replay-btn:hover,
+.shuffle-btn:hover,
+.play-pause-btn:hover,
+.prev-btn:hover,
+.next-btn:hover {
+  opacity: 1;
 }
 
 
@@ -203,32 +233,23 @@ body {
   display: none;
 }
 
-.random-btn,
-.play-pause-btn,
-.next-btn,
-.prev-btn,
-.repeat-btn{
-  color: #eeeae6;
-  background-color: transparent;
-  border: none;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-.randomActive {
-  color: black;
-}
-.random-btn{
+/* Shuffle Button */
+.shuffle-btn{
   opacity: 0;
   transform: scaleX(0);
-  transform: translateX(189%);
+  transform: translateX(180%);
   transition: all;
 }
-.button-controls:hover .random-btn{
+.button-controls:hover .shuffle-btn{
   opacity: 1;
   transform: scaleX(1);
   transition: width 300ms ease-in-out, transform 300ms ease-in-out;
 }
+.shuffle-active {
+  color: black;
+}
+
+/* Previous Button */
 .prev-btn{
   opacity: 0;
   transform: scaleX(0);
@@ -241,6 +262,7 @@ body {
   transition: width 300ms ease-in-out, transform 300ms ease-in-out;
 }
 
+/* Next Button */
 .next-btn{
   opacity: 0;
   transform: scaleX(0);
@@ -252,13 +274,15 @@ body {
   transform: scaleX(1);
   transition: width 300ms ease-in-out, transform 300ms ease-in-out;
 }
-.repeat-btn{
+
+/* Replay Button */
+.replay-btn{
   opacity: 0;
   transform: scaleX(0);
   transform: translateX(-189%);
   transition: all;
 }
-.button-controls:hover .repeat-btn{
+.button-controls:hover .replay-btn{
 opacity: 1;
 transform: scaleX(1);
 transition: width 300ms ease-in-out, transform 300ms ease-in-out;

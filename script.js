@@ -3,16 +3,16 @@ let trackArt = document.querySelector(".track-art");
 let trackName = document.querySelector(".track-name");
 let trackArtist = document.querySelector(".track-artist");
 
+let shuffleBtn = document.querySelector(".shuffle-btn");
+let prevBtn = document.querySelector(".prev-btn");
 let playPauseBtn = document.querySelector(".play-pause-btn");
 let nextBtn = document.querySelector(".next-btn");
-let prevBtn = document.querySelector(".prev-btn");
 let muteBtn = document.querySelector(".mute-btn")
 let seekSlider = document.querySelector(".seek-slider");
 let volumeSlider = document.querySelector(".volume-slider");
 let currentTime = document.querySelector(".current-time");
 let totalTime = document.querySelector(".total-time");
 let wave = document.getElementById("wave");
-let randomIcon = document.querySelector(".fa-random");
 // let audio = document.createElement("audio");
 let audio = document.querySelector("audio");
 let playerContainer = document.querySelector(".player-container")
@@ -108,20 +108,22 @@ function random_bg_color() {
 function reset() {
   currentTime.textContent = "00:00";
   totalTime.textContent = "00:00";
+
   seekSlider.value = 0;
 }
+shuffleBtn.addEventListener("click", () => {
+  shuffleBtn.classList.toggle("shuffle-active")
+})
 
 /*Random Track*/
-function randomTrack() {
-  isRandom ? pauseRandom() : playRandom();
+function shuffleTrack() {
+  isRandom ? pauseShuffle() : playShuffle();
 }
-function playRandom() {
+function playShuffle() {
   isRandom = true;
-  randomIcon.classList.add("randomActive");
 }
-function pauseRandom() {
+function pauseShuffle() {
   isRandom = false;
-  randomIcon.classList.remove("randomActive");
 }
 
 /*Repeat Track*/
