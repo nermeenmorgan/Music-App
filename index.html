@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0
       shrink-to-fit=no user-scalable=no" />
+      <!-- Font Awesome Icons -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
@@ -60,24 +61,24 @@
           <div class="total-time">00:00</div>
         </div>
 
+        <div class="volume-container">
+          <button class="mute-btn">
+            <span class="material-icons volume-off">volume_off</span>
+            <span class="material-icons volume-down">volume_down</span>
+            <span class="material-icons volume-up">volume_up</span>
+          </button>
+          <input
+            class="volume-slider"
+            type="range"
+            min="0"
+            max="1"
+            value="100"
+            step="any"
+            style="--volume-level:1"
+          />
+        </div>
         
         <div class="button-controls">
-          <div class="volume-container">
-            <button class="mute-btn">
-              <span class="volume-off"><i class="fa fa-volume-off"></i></span>
-              <span class="volume-down"><i class="fa fa-volume-down"></i></span>
-              <span class="volume-up"><i class="fa fa-volume-up"></i></span>
-            </button>
-            <input
-              class="volume-slider"
-              type="range"
-              min="0"
-              max="1"
-              value="100"
-              step="any"
-              style="--volume-level:1"
-            />
-          </div>
           <button class="shuffle-btn" title="Shuffle" onclick="shuffleTrack()">
             <span class="material-icons">shuffle</span>
           </button>
@@ -96,7 +97,9 @@
           </button>
         </div>
         
-        
+        <div class="menu-btn">
+          <span class="material-icons">more_vert</span>
+        </div>
 
         
 

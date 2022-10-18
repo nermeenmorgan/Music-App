@@ -23,25 +23,25 @@ let updateTimer;
 
 const music_list = [
   {
-    img: "images/a.png",
+    img: "https://images.unsplash.com/photo-1661431324317-197480ce7a8a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1528&q=80",
     name: "Sample",
     artist: "N/A",
     music: "music/audio.mp3",
   },
   {
-    img: "images/fallingdown.jpg",
+    img: "https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
     name: "Falling Down",
     artist: "Wid Cards",
     music: "music/fallingdown.mp3",
   },
   {
-    img: "images/faded.png",
+    img: "https://images.unsplash.com/photo-1659542891330-b2969fb0741e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1372&q=80",
     name: "Faded",
     artist: "Alan Walker",
     music: "music/Faded.mp3",
   },
   {
-    img: "images/ratherbe.jpg",
+    img: "https://images.unsplash.com/photo-1659425757127-ccbf96c59163?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1386&q=80",
     name: "Rather Be",
     artist: "Clean Bandit",
     music: "music/Rather Be.mp3",
