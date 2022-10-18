@@ -33,33 +33,31 @@
   </head>
   <body>
     <div class="music-player-page">
-      <div class="player-container paused" data-volume-level="high">
+      <div class="music-container paused" data-volume-level="high">
 
         <audio preload="metadata">
           <source src="music/audio.mp3" type="music/mp3">
         </audio>
 
         <div class="details">
-          <!-- <div class="now-playing">Now Playing</div> -->
           <div class="track-art"></div>
-          <div class="track-name">Track Name</div>
-          <div class="track-artist">Track Artist</div>
+          <!-- <div class="now-playing">Now Playing</div> -->
+          <div class="music-info">
+            <div class="track-name">Track Name</div>
+            <div class="track-artist">Track Artist</div>
+            <div class="duration-container">
+              <div class="current-time">00:00</div>
+            <div class="timeline-container">
+              <div class="timeline">
+                <div class="thumb-indicator"></div>
+              </div>
+            </div>
+            <div class="total-time">00:00</div>
+            </div>
+          </div>
         </div>
-
         
 
-        <div class="timeline-container">
-          <div class="current-time">00:00</div>
-          <input
-            type="range"
-            min="1"
-            max="100"
-            value="0"
-            class="seek-slider"
-            onchange="seekTo()"
-          />
-          <div class="total-time">00:00</div>
-        </div>
 
         <div class="volume-container">
           <button class="mute-btn">
@@ -78,7 +76,7 @@
           />
         </div>
         
-        <div class="button-controls">
+        <div class="button-container">
           <button class="shuffle-btn" title="Shuffle" onclick="shuffleTrack()">
             <span class="material-icons">shuffle</span>
           </button>

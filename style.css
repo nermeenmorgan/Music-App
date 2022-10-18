@@ -9,7 +9,7 @@ body {
   flex-direction: column;
   justify-content: center;
 }
-.player-container {
+.music-container {
   position: relative;
   height: 70%;
   width: 40%;
@@ -40,17 +40,44 @@ body {
 .now-playing {
   font-size: 1rem;
 }
-.track-name {
+
+.music-info{
+  /* display: flex; */
+  /* flex-direction: column; */
+  background-color: rgba(81, 84, 88, 0.267);
+  border-radius: 15px 15px 0 0;
   position: absolute;
-  font-size: 2rem;
-  bottom: 40%;
-  right: 2.5rem;
+  top: 61%;
+  left: 30%;
+  width: 70%;
+  padding: .25rem 0 0 0;
+  opacity: 0;
+  transform: translateY(0%);
+  transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+  z-index: 0;
+}
+
+.music-info .track-name {
+  margin: 0;
+}
+
+.details:hover .music-info,
+.music-container:not(.paused) .music-info {
+  opacity: 1;
+  transform: translateY(-100%);
+}
+
+.track-name {
+  /* position: absolute; */
+  font-size: 1.5rem;
+  /* bottom: 40%; */
+  /* right: 2.5rem; */
 }
 .track-artist {
-  position: absolute;
-  margin-top: 5px;
+  /* position: absolute; */
+  /* margin-top: 5px; */
   font-size: 1rem;
-  bottom: 45%;
+  /* bottom: 45%; */
   right: 5rem
 }
 
@@ -88,23 +115,29 @@ body {
 }
 
 /*Display volume button according to volume state*/
-.player-container[data-volume-level="high"] .volume-up {
+.music-container[data-volume-level="high"] .volume-up {
   display: block;
 }
 
-.player-container[data-volume-level="low"] .volume-down {
+.music-container[data-volume-level="low"] .volume-down {
   display: block;
 }
 
-.player-container[data-volume-level="muted"] .volume-off {
+.music-container[data-volume-level="muted"] .volume-off {
   display: block;
+}
+.duration-container{
+display: flex;
+align-items: center;
+justify-content: center;
 }
 
 /* Timeline Container */
 .timeline-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: .38rem;
+  cursor: pointer;
+  width: 60%;
+  min-width: 0;
 }
 
 /* Time */
@@ -113,21 +146,84 @@ body {
   padding: 10px;
 }
 /* Time Slider */
-.seek-slider {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  height: .4rem;
-  width: 60%;
-  background: rgba(100,100,100,.5);
+.timeline {
+  background-color: rgba(100,100,100,.5);
+  margin-left: .5rem;
+  margin-right: .5rem;
+  /*Rounds Edges*/
+  border-radius: .5rem;
+  position: relative;
+}
+
+/*Time Preview*/
+.timeline::before {
+  content: "";
+  position: absolute;
+  /*Starts to the left*/
+  left: .2rem;
+  /*Fills full size of section*/
+  top: 0;
+  bottom: 0;
+  /*Right value is 100% - preview position x 100%*/
+  right: calc(100% - var(--preview-position) * 100%);
+  background-color: rgb(150,150,150);
   /*Rounds Edges*/
   border-radius: .4rem;
-  cursor: pointer;
-  outline: none;
-  border: none;
-  -webkit-transition: 0.2s;
-  transition: opacity 0.2s;
+  display: none;
+} 
+
+/*Timeline Progress*/
+.timeline::after {
+  content: "";
+  position: absolute;
+  /*Starts to the left*/
+  left: 0;
+  /*Fills full size of section*/
+  top: 0;
+  bottom: 0;
+  /*Right value is 100% - progress position x 100%*/
+  right: calc(100% - var(--progress-position) * 100%);
+  background-color: var(--background);
+  /*Rounds Edges*/
+  border-radius: .4rem;
 }
+
+/*Timeline thumb indicator*/
+.timeline .thumb-indicator {
+  --scale: 0;
+  position: absolute;
+  /*Center circle by half of its width*/
+  transform: translateX(-50%) scale(var(--scale));
+  /*Height twice the size of bar*/
+  height: 200%;
+  /*Keep in middle of bar*/
+  top: -50%;
+  /*Determines position. Progress position x 100%*/
+  left: calc(var(--progress-position) * 100%);
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 150ms ease-in-out;
+  aspect-ratio: 1 / 1;
+  z-index: 1;
+}
+
+
+.music-container.scrubbing .timeline::before,
+.timeline-container:hover .timeline::before {
+  display: block;
+}
+
+.music-container.scrubbing .thumb-indicator,
+.timeline-container:hover .thumb-indicator {
+  --scale: 1;
+}
+
+/*When scrubbing double in size*/
+.music-container.scrubbing .timeline,
+.timeline-container .timeline {
+  height: 100%;
+}
+
 
 /* Volume Slider */
 .volume-slider {
@@ -156,13 +252,13 @@ body {
   bottom: 0;
   /*Right value is 100% - progress position x 100%*/
   right: calc(100% - var(--volume-level) * 100%);
-  background-color: #161c2c;
+  background: var(--background);
   /*Rounds Edges*/
   border-radius: .4rem;
 }
 
 /* Volume and Timeline Slider Thumb */
-.seek-slider::-webkit-slider-thumb,
+.timeline::-webkit-slider-thumb,
 .volume-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -193,14 +289,14 @@ body {
 }
 
 /*Button Controls*/
-.button-controls {
+.button-container {
   transform: translateY(25%);
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.button-controls button{
+.button-container button{
   background: none;
   border:none;
   padding: 0;
@@ -243,12 +339,12 @@ body {
 }
 
 /*If video is paused, hide pause button*/
-.player-container.paused .pause {
+.music-container.paused .pause {
   display: none;
 }
 
 /*If video is NOT paused, hide play button*/
-.player-container:not(.paused) .play {
+.music-container:not(.paused) .play {
   display: none;
 }
 
@@ -259,7 +355,7 @@ body {
   transform: translateX(180%);
   transition: all;
 }
-.button-controls:hover .shuffle-btn{
+.button-container:hover .shuffle-btn{
   opacity: 1;
   transform: scaleX(1);
   transition: width 300ms ease-in-out, transform 300ms ease-in-out;
@@ -275,7 +371,7 @@ body {
   transform: translateX(100%);
   transition: all;
 }
-.button-controls:hover .prev-btn{
+.button-container:hover .prev-btn{
   opacity: 1;
   transform: scaleX(1);
   transition: width 300ms ease-in-out, transform 300ms ease-in-out;
@@ -288,7 +384,7 @@ body {
   transform: translateX(-100%);
   transition: all;
 }
-.button-controls:hover .next-btn{
+.button-container:hover .next-btn{
   opacity: 1;
   transform: scaleX(1);
   transition: width 300ms ease-in-out, transform 300ms ease-in-out;
@@ -301,7 +397,7 @@ body {
   transform: translateX(-189%);
   transition: all;
 }
-.button-controls:hover .replay-btn{
+.button-container:hover .replay-btn{
 opacity: 1;
 transform: scaleX(1);
 transition: width 300ms ease-in-out, transform 300ms ease-in-out;
