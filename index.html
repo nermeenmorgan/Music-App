@@ -39,69 +39,70 @@
           <source src="music/audio.mp3" type="music/mp3">
         </audio>
 
-        <div class="details">
+        <div class="top-container">
           <div class="track-art"></div>
-          <!-- <div class="now-playing">Now Playing</div> -->
+        </div>
+        
+        
+        <div class="bottom-container">
           <div class="music-info">
             <div class="track-name">Track Name</div>
             <div class="track-artist">Track Artist</div>
-            <div class="duration-container">
-              <div class="current-time">00:00</div>
-            <div class="timeline-container">
-              <div class="timeline">
-                <div class="thumb-indicator"></div>
-              </div>
+          </div>
+          <div class="duration-container">
+            <div class="current-time">00:00</div>
+          <div class="timeline-container">
+            <div class="timeline">
+              <div class="thumb-indicator"></div>
             </div>
-            <div class="total-time">00:00</div>
-            </div>
+          </div>
+          <div class="total-time">00:00</div>
+          </div>
+
+          <!-- Volume Button -->
+          <div class="volume-container">
+            <button class="mute-btn">
+              <span class="material-icons volume-off">volume_off</span>
+              <span class="material-icons volume-down">volume_down</span>
+              <span class="material-icons volume-up">volume_up</span>
+            </button>
+            <input
+              class="volume-slider"
+              type="range"
+              min="0"
+              max="1"
+              value="100"
+              step="any"
+              style="--volume-level:1"
+            />
+          </div>
+
+          <div class="button-container">
+            <button class="shuffle-btn" title="Shuffle" onclick="shuffleTrack()">
+              <span class="material-icons">shuffle</span>
+            </button>
+            <button class="prev-btn" title="Prev" onclick="prevTrack()">
+              <span class="material-icons">skip_previous</span>
+            </button>
+            <button class="play-pause-btn" title="Play">
+              <span class="material-icons play">play_circle</span>
+              <span class="material-icons pause">pause_circle</span>
+            </button>
+            <button class="next-btn" title="Next" onclick="nextTrack()">
+              <span class="material-icons">skip_next</span>
+            </button>
+            <button class="replay-btn" title="Replay"onclick="repeatTrack()">
+              <span class="material-icons">replay</span>
+            </button>
+          </div>
+        
+          <div class="menu-btn">
+            <span class="material-icons">more_vert</span>
           </div>
         </div>
         
 
-
-        <div class="volume-container">
-          <button class="mute-btn">
-            <span class="material-icons volume-off">volume_off</span>
-            <span class="material-icons volume-down">volume_down</span>
-            <span class="material-icons volume-up">volume_up</span>
-          </button>
-          <input
-            class="volume-slider"
-            type="range"
-            min="0"
-            max="1"
-            value="100"
-            step="any"
-            style="--volume-level:1"
-          />
-        </div>
-        
-        <div class="button-container">
-          <button class="shuffle-btn" title="Shuffle" onclick="shuffleTrack()">
-            <span class="material-icons">shuffle</span>
-          </button>
-          <button class="prev-btn" title="Prev" onclick="prevTrack()">
-            <span class="material-icons">skip_previous</span>
-          </button>
-          <button class="play-pause-btn" title="Play">
-            <span class="material-icons play">play_circle</span>
-            <span class="material-icons pause">pause_circle</span>
-          </button>
-          <button class="next-btn" title="Next" onclick="nextTrack()">
-            <span class="material-icons">skip_next</span>
-          </button>
-          <button class="replay-btn" title="Replay"onclick="repeatTrack()">
-            <span class="material-icons">replay</span>
-          </button>
-        </div>
-        
-        <div class="menu-btn">
-          <span class="material-icons">more_vert</span>
-        </div>
-
-        
-
-        <div id="wave">
+        <!-- <div id="wave">
           <span class="stroke"></span>
           <span class="stroke"></span>
           <span class="stroke"></span>
@@ -109,7 +110,7 @@
           <span class="stroke"></span>
           <span class="stroke"></span>
           <span class="stroke"></span>
-        </div>
+        </div> -->
       </div>
     </div>
   </body>

@@ -3,7 +3,7 @@ body {
   color: whitesmoke;
 }
 .music-player-page {
-  height: 95vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -16,20 +16,26 @@ body {
   border: 1px solid transparent;
   background-color: rgba(81, 84, 88, 0.267);
   padding-bottom: 30px;
-  background-size: cover;
+  background-size: 100%;
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
     rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
-.details {
+.top-container {
   display: flex;
-  height: 65%;
+  height: 60%;
   width: 100%;
   align-items: center;
   flex-direction: column;
   justify-content: center;
 }
+
+.bottom-container{
+  top: 100%;
+}
+
 .track-art {
+  border-radius: 15px 15px 0 0;
   margin: 0 0 0 0;
   height: 300px;
   width: 100%;
@@ -44,14 +50,17 @@ body {
 .music-info{
   /* display: flex; */
   /* flex-direction: column; */
-  background-color: rgba(81, 84, 88, 0.267);
-  border-radius: 15px 15px 0 0;
-  position: absolute;
-  top: 61%;
-  left: 30%;
-  width: 70%;
+  /* background-color: rgba(81, 84, 88, 0.267); */
+  /* background-color: transparent; */
+  text-align: center;
+  /* border-radius: 15px 15px 0 0; */
+  /* position: absolute; */
+  /* justify-content: center; */
+  top: 45%;
+  right: 0;
+  width: 100%;
   padding: .25rem 0 0 0;
-  opacity: 0;
+  opacity: 1;
   transform: translateY(0%);
   transition: transform 0.3s ease-in, opacity 0.3s ease-in;
   z-index: 0;
@@ -61,11 +70,11 @@ body {
   margin: 0;
 }
 
-.details:hover .music-info,
+/* .top-c:hover .music-info,
 .music-container:not(.paused) .music-info {
   opacity: 1;
   transform: translateY(-100%);
-}
+} */
 
 .track-name {
   /* position: absolute; */
@@ -252,6 +261,7 @@ justify-content: center;
   bottom: 0;
   /*Right value is 100% - progress position x 100%*/
   right: calc(100% - var(--volume-level) * 100%);
+  /* Variable to make bg color same as page */
   background: var(--background);
   /*Rounds Edges*/
   border-radius: .4rem;
@@ -262,8 +272,6 @@ justify-content: center;
 .volume-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 6px;
-  height: 15px; 
   border: none;
   outline: none; 
   background: #eeeae6;
@@ -271,6 +279,8 @@ justify-content: center;
 
 .volume-slider::-webkit-slider-thumb{
   position: absolute;
+  height: 200%; 
+  border-radius: 50%;
   /*Sets to middle*/
   transform: translateY(-50%);
   /*Sets position on slider*/
@@ -290,7 +300,7 @@ justify-content: center;
 
 /*Button Controls*/
 .button-container {
-  transform: translateY(25%);
+  transform: translateY(15%);
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -301,7 +311,7 @@ justify-content: center;
   border:none;
   padding: 0;
   /* height: 1.5rem; */
-  width: 15%;
+  width: 17%;
   font-size: 1.1rem;
 }
 .active {
@@ -420,7 +430,7 @@ transition: width 300ms ease-in-out, transform 300ms ease-in-out;
 
 
 
-.rotate {
+/* .rotate {
   animation: rotation 8s infinite linear;
 }
 @keyframes rotation {
@@ -474,4 +484,30 @@ transition: width 300ms ease-in-out, transform 300ms ease-in-out;
 }
 .stroke:nth-child(7) {
   animation-delay: 0s;
+} */
+
+@media screen and (max-width:1024px){
+  .music-container{
+    width: 45%;
+  }
+  .button-container button{
+    width: 17%;
+  }
+}
+@media screen and (max-width:825px){
+  .button-container button{
+    width: 20%;
+  }
+}
+@media screen and (max-width:680px){
+  .music-container{
+    width: 50%;
+  }
+  
+}
+@media screen and (max-width:425px){
+  .music-container{
+    width: 55%;
+  }
+  
 }

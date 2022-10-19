@@ -1,5 +1,7 @@
-let nowPlaying = document.querySelector(".now-playing");
+let musicContainer = document.querySelector(".music-container");
+let audio = document.querySelector("audio");
 let trackArt = document.querySelector(".track-art");
+let musicInfo = document.querySelector(".music-info");
 let trackName = document.querySelector(".track-name");
 let trackArtist = document.querySelector(".track-artist");
 let timelineContainer = document.querySelector(".timeline-container");
@@ -9,18 +11,13 @@ let prevBtn = document.querySelector(".prev-btn");
 let playPauseBtn = document.querySelector(".play-pause-btn");
 let nextBtn = document.querySelector(".next-btn");
 let muteBtn = document.querySelector(".mute-btn");
-// let seekSlider = document.querySelector(".seek-slider");
 let volumeSlider = document.querySelector(".volume-slider");
 let currentTime = document.querySelector(".current-time");
 let totalTime = document.querySelector(".total-time");
-let wave = document.getElementById("wave");
-// let audio = document.createElement("audio");
-let audio = document.querySelector("audio");
-let musicContainer = document.querySelector(".music-container");
+// let wave = document.getElementById("wave");
 let trackIndex = 0;
 let isPlaying = false;
 let isRandom = false;
-let updateTimer;
 
 
 
@@ -55,7 +52,6 @@ const music_list = [
 loadTrack(trackIndex);
 
 function loadTrack(trackIndex) {
-  // clearInterval(updateTimer);
   reset();
 
   audio.src = music_list[trackIndex].music;
@@ -64,10 +60,7 @@ function loadTrack(trackIndex) {
   trackArt.style.backgroundImage = "url(" + music_list[trackIndex].img + ")";
   trackName.textContent = music_list[trackIndex].name;
   trackArtist.textContent = music_list[trackIndex].artist;
-  // nowPlaying.textContent =
-  //   "Playing music " + (trackIndex + 1) + " of " + music_list.length;
 
-  // updateTimer = setInterval(setUpdate, 1000);
 
   audio.addEventListener("ended", nextTrack);
   random_bg_color();
@@ -103,136 +96,19 @@ function random_bg_color() {
   }
   let Color1 = populate("#");
   let Color2 = populate("#");
-  var angle = "to right";
+  var angle = "to bottom right";
 
   let gradient =
     "linear-gradient(" + angle + "," + Color1 + ", " + Color2 + ")";
   document.body.style.background = gradient;
   volumeSlider.style.setProperty("--background", Color2)
   timelineContainer.style.setProperty("--background", Color2)
-  timelineContainer.style.setProperty("--background", Color2)
+  musicInfo.style.setProperty("--background", gradient)
 }
 function reset() {
   currentTime.textContent = "00:00";
   totalTime.textContent = "00:00";
 }
-shuffleBtn.addEventListener("click", () => {
-  shuffleBtn.classList.toggle("shuffle-active")
-})
-
-/*Random Track*/
-function shuffleTrack() {
-  isRandom ? pauseShuffle() : playShuffle();
-}
-function playShuffle() {
-  isRandom = true;
-}
-function pauseShuffle() {
-  isRandom = false;
-}
-
-/*Repeat Track*/
-function repeatTrack() {
-  let current_index = trackIndex;
-  loadTrack(current_index);
-  playTrack();
-}
-
-//Play/Pause button toggle
-playPauseBtn.addEventListener("click", togglePlay)
-
-/*Play/Pause*/
-function togglePlay() {
-  audio.paused ? audio.play() : audio.pause();
-}
-
-//Add paused class on paused and remove on play
-audio.addEventListener("play", () => {
-  musicContainer.classList.remove("paused")
-})
-
-audio.addEventListener("pause", () => {
-  musicContainer.classList.add("paused")
-})
-
-// function playTrack() {
-//   audio.play();
-//   isPlaying = true;
-//   //trackArt.classList.add("rotate");
-//   // wave.classList.add("loader");
-//   playPauseBtn.innerHTML = '<button class="fa fa-pause-circle pause"></button>';
-// }
-// function pauseTrack() {
-//   audio.pause();
-//   isPlaying = false;
-//   //trackArt.classList.remove("rotate");
-//   // wave.classList.remove("loader");
-//   playPauseBtn.innerHTML = '<button class="fa fa-play-circle play"></button>';
-// }
-
-/*Next Track*/
-function nextTrack() {
-  if (trackIndex < music_list.length - 1 && isRandom === false) {
-    trackIndex += 1;
-  } else if (trackIndex < music_list.length - 1 && isRandom === true) {
-    let random_index = Number.parseInt(Math.random() * music_list.length);
-    trackIndex = random_index;
-  } else {
-    trackIndex = 0;
-  }
-  loadTrack(trackIndex);
-  playTrack();
-}
-
-/*Prev Track*/
-function prevTrack() {
-  if (trackIndex > 0) {
-    trackIndex -= 1;
-  } else {
-    trackIndex = music_list.length - 1;
-  }
-  loadTrack(trackIndex);
-  playTrack();
-}
-
-// function seekTo() {
-//   let seekto = audio.duration * (seekSlider.value / 100);
-//   audio.currentTime = seekto;
-// }
-
-//Mute toggle
-muteBtn.addEventListener("click", toggleMute)
-
-function toggleMute() {
-  audio.muted = !audio.muted
-}
-
-//Set volume slider to corresponding value
-volumeSlider.addEventListener("input", e => {
-  audio.volume = e.target.value
-  audio.muted = e.target.value === 0 
-})
-
-
-//Change volume button according to actual volume
-audio.addEventListener("volumechange", () => {
-  volumeSlider.value = audio.volume / 1
-  let volumeLevel
-  if (audio.muted || audio.volume === 0) {
-    volumeSlider.value = 0
-    volumeLevel = "muted"
-  } else if (audio.volume >= 0.6) {
-    volumeLevel = "high"
-  } else {
-    volumeLevel = "low"
-  }
-  
-  //Volume button will correlate with volume level
-  musicContainer.dataset.volumeLevel = volumeLevel
-  
-  //Inside volume bar will move with volume level
-  volumeSlider.style.setProperty("--volume-level", volumeSlider.value)
-})
 
 
 //Timeline
@@ -327,9 +203,117 @@ function formatDuration(time) {
   } else {
     return `${hours}:${leadingZeroFormatter.format(
       minutes)}:${leadingZeroFormatter.format(seconds)}`
+    }
   }
+
+
+// Shuffle Button
+shuffleBtn.addEventListener("click", () => {
+  shuffleBtn.classList.toggle("shuffle-active")
+})
+
+function shuffleTrack() {
+  isRandom ? pauseShuffle() : playShuffle();
+}
+function playShuffle() {
+  isRandom = true;
+}
+function pauseShuffle() {
+  isRandom = false;
 }
 
+
+//Play/Pause button toggle
+playPauseBtn.addEventListener("click", togglePlay)
+
+/*Play/Pause*/
+function togglePlay() {
+  audio.paused ? audio.play() : audio.pause();
+}
+
+//Add paused class on paused and remove on play
+audio.addEventListener("play", () => {
+  musicContainer.classList.remove("paused")
+})
+
+audio.addEventListener("pause", () => {
+  musicContainer.classList.add("paused")
+})
+
+
+/*Next Track*/
+function nextTrack() {
+  if (trackIndex < music_list.length - 1 && isRandom === false) {
+    trackIndex += 1;
+  } else if (trackIndex < music_list.length - 1 && isRandom === true) {
+    let random_index = Number.parseInt(Math.random() * music_list.length);
+    trackIndex = random_index;
+  } else {
+    trackIndex = 0;
+  }
+  loadTrack(trackIndex);
+  playTrack();
+}
+
+/*Prev Track*/
+function prevTrack() {
+  if (trackIndex > 0) {
+    trackIndex -= 1;
+  } else {
+    trackIndex = music_list.length - 1;
+  }
+  loadTrack(trackIndex);
+  playTrack();
+}
+
+/*Repeat Track*/
+function repeatTrack() {
+  let current_index = trackIndex;
+  loadTrack(current_index);
+  playTrack();
+}
+
+//Mute toggle
+muteBtn.addEventListener("click", toggleMute)
+
+function toggleMute() {
+  audio.muted = !audio.muted
+}
+
+//Set volume slider to corresponding value
+volumeSlider.addEventListener("input", e => {
+  audio.volume = e.target.value
+  audio.muted = e.target.value === 0 
+})
+
+
+//Change volume button according to actual volume
+audio.addEventListener("volumechange", () => {
+  volumeSlider.value = audio.volume / 1
+  let volumeLevel
+  if (audio.muted || audio.volume === 0) {
+    volumeSlider.value = 0
+    volumeLevel = "muted"
+  } else if (audio.volume >= 0.6) {
+    volumeLevel = "high"
+  } else {
+    volumeLevel = "low"
+  }
+  
+  //Volume button will correlate with volume level
+  musicContainer.dataset.volumeLevel = volumeLevel
+  
+  //Inside volume bar will move with volume level
+  volumeSlider.style.setProperty("--volume-level", volumeSlider.value)
+})
+
+
+
+  
+// function seekTo() {
+//   let seekto = audio.duration * (seekSlider.value / 100);
+//   audio.currentTime = seekto;
+// }
 
 // function setUpdate() {
 //   let seekPosition = 0;
