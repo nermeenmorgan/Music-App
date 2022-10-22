@@ -222,7 +222,7 @@ justify-content: center;
 .volume-slider {
   -webkit-appearance: none;
   appearance: none;
-  /* width: 30%; */
+  width: 30%;
   /*Hide by default*/
   background: rgba(100,100,100,.5);
   cursor: pointer;
@@ -284,7 +284,7 @@ justify-content: center;
 
 /*Button Controls*/
 .button-container {
-  transform: translateY(15%);
+  /* transform: translateY(15%); */
   cursor: pointer;
   display: flex;
   justify-content: center;
