@@ -2,6 +2,26 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   color: whitesmoke;
 }
+
+/*Custom Scrollbar*/
+::-webkit-scrollbar {
+  width: 13px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #394870;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #19233b;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #141927;
+}
+
 .music-player-page {
   height: 100vh;
   display: flex;
