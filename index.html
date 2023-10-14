@@ -32,13 +32,45 @@
     <script src="script.js" defer></script>
   </head>
   <body>
+    <header>
+      <nav>
+        <div class="menu-toggle" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+      </div>
+          <h1>Music Player</h1>
+          <ul>
+              <li><a href="#">Home</a> </li>
+             <li>
+  
+                 <a href="#">About</a>
+             </li>
+             <li>
+  
+                 <a href="#">All Music</a>
+             </li>
+            
+             <li>
+  
+                 <a href="#">Contact us</a>
+             </li>
+          </ul>
+          <div class="mobile_menu_icon">
+              <span class="mobile_menu_icon_top"></span>
+              <span class="mobile_menu_icon_middle"></span>
+              <span class="mobile_menu_icon_bottom"></span>
+          </div>
+      </nav>
+  </header>
     <div class="music-player-page">
       <div class="music-container paused" data-volume-level="high">
 
         <audio preload="metadata">
-          <source src="music/audio.mp3" type="music/mp3">
+          <source src="music/music1.mp3" type="music/mp3">
         </audio>
 
+        
         <div class="top-container">
           <div class="track-art"></div>
         </div>
@@ -59,7 +91,6 @@
           <div class="total-time">00:00</div>
           </div>
 
-          <!-- Volume Button -->
           <div class="volume-container">
             <button class="mute-btn">
               <span class="material-icons volume-off">volume_off</span>
@@ -100,17 +131,7 @@
             <span class="material-icons">more_vert</span>
           </div>
         </div>
-        
-
-        <!-- <div id="wave">
-          <span class="stroke"></span>
-          <span class="stroke"></span>
-          <span class="stroke"></span>
-          <span class="stroke"></span>
-          <span class="stroke"></span>
-          <span class="stroke"></span>
-          <span class="stroke"></span>
-        </div> -->
+      
       </div>
     </div>
   </body>

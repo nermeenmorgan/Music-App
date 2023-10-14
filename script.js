@@ -14,7 +14,6 @@ let muteBtn = document.querySelector(".mute-btn");
 let volumeSlider = document.querySelector(".volume-slider");
 let currentTime = document.querySelector(".current-time");
 let totalTime = document.querySelector(".total-time");
-// let wave = document.getElementById("wave");
 let trackIndex = 0;
 let isPlaying = false;
 let isRandom = false;
@@ -25,28 +24,23 @@ let isRandom = false;
 const music_list = [
   {
     img: "https://images.unsplash.com/photo-1661431324317-197480ce7a8a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1528&q=80",
-    name: "Sample",
-    artist: "N/A",
-    music: "music/audio.mp3",
+    name: "Moment of Reflection   ",
+    artist: "Aakash Gandhi",
+    music: "music/music1.mp3",
   },
   {
     img: "https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
-    name: "Falling Down",
-    artist: "Wid Cards",
-    music: "music/fallingdown.mp3",
+    name: "Til Death Parts Us",
+    artist: "Aakash Gandhi",
+    music: "music/music2.mp3",
   },
   {
     img: "https://images.unsplash.com/photo-1659542891330-b2969fb0741e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1372&q=80",
-    name: "Faded",
-    artist: "Alan Walker",
-    music: "music/Faded.mp3",
+    name: "Piano Backsound",
+    artist: "Andrian alfarezel",
+    music: "music/music3.mp3",
   },
-  {
-    img: "https://images.unsplash.com/photo-1659425757127-ccbf96c59163?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1386&q=80",
-    name: "Rather Be",
-    artist: "Clean Bandit",
-    music: "music/Rather Be.mp3",
-  },
+
 ];
 
 loadTrack(trackIndex);
